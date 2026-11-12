@@ -14,7 +14,7 @@
         description: My todo list page
         ping: todo.nxbin.xyz
     - Library:
-        icon: caliber-web.png
+        icon: calibre-web.png
         href: https://library.nxbin.xyz
         description: My library
         ping: library.nxbin.xyz
