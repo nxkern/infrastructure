@@ -130,4 +130,100 @@ resource "docker_container" "vikunja" {
   restart = "always"
 }
 
+resource "azurecaf_name" "random_name_memos" {
+  name = "memos"
+  resource_type = "azurerm_resource_group"
+  prefixes = ["prod"]
+  suffixes = ["001"]
+  random_length = 4
+  clean_input = true
+}
+
+resource "docker_image" "memos" {
+  name = "neosmemo/memos:stable"
+}
+
+resource "docker_volume" "memos_data" {
+  name = "memos_data"
+}
+
+resource "docker_container" "memos" {
+  name = azurecaf_name.random_name_memos.result
+  image = docker_image.memos.image_id
+
+  ports {
+    internal = 5230
+    external = 5230
+  }
+  networks_advanced {
+    name = "homelab_net"
+  }
+  volumes {
+    volume_name = docker_volume.memos_data.name
+    container_path = "/var/opt/memos"
+  }
+  restart = "always"
+}
+
+resource "azurecaf_name" "random_name_adguardhome" {
+  name = "adguardhome"
+  resource_type = "azurerm_resource_group"
+  prefixes = ["prod"]
+  suffixes = ["001"]
+  random_length = 4
+  clean_input = true
+}
+
+resource "docker_image" "adguardhome" {
+  name = "adguard/adguardhome:latest"
+}
+
+resource "docker_volume" "adguardhome_work" {
+  name = "adguardhome_work"
+}
+
+resource "docker_volume" "adguardhome_conf" {
+  name = "adguardhome_conf"
+}
+
+resource "docker_container" "adguardhome" {
+  name = azurecaf_name.random_name_adguardhome.result
+  image = docker_image.adguardhome.image_id
+
+  ports {
+    internal = 53
+    external = 53
+    protocol = "tcp"
+  }
+  ports {
+    internal = 53
+    external = 53
+    protocol = "udp"
+  }
+  ports {
+    internal = 3000
+    external = 3000
+    protocol = "tcp"
+  }
+  ports {
+    internal = 80
+    external = 8080
+    protocol = "tcp"
+  }
+
+  networks_advanced {
+    name = "homelab_net"
+    aliases = ["adguardhome"]
+  }
+
+  volumes {
+    volume_name = docker_volume.adguardhome_work.name
+    container_path = "/opt/adguardhome/work"
+  }
+  volumes {
+    volume_name = docker_volume.adguardhome_conf.name
+    container_path = "/opt/adguardhome/conf"
+  }
+  restart = "always"
+}
 
