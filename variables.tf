@@ -13,3 +13,7 @@ variable "nuxt_api_key_worker" {
 variable "homepage_allowed_host" {
   type = string
 }
+
+variable "vikunja_service_publicurl" {
+  type = string
+}
