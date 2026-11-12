@@ -1,0 +1,20 @@
+---
+# For configurations options and examples, please seee:
+# https://gethomepage.dev/configs/services/
+
+- Home:
+    - Memos:
+        icon: memos.png
+        href: https://memos.nxbin.xyz
+        description: My social X be like
+        ping: memos.nxbin.xyz
+    - Todo:
+        icon: si-vikunja-#196AFF
+        href: https://todo.nxbin.xyz
+        description: My todo list page
+        ping: todo.nxbin.xyz
+    - Library:
+        icon: caliber-web.png
+        href: https://library.nxbin.xyz
+        description: My library
+        ping: library.nxbin.xyz

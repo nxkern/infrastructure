@@ -9,3 +9,7 @@ variable "url_image" {
 variable "nuxt_api_key_worker" {
   type = string
 }
+
+variable "homepage_allowed_host" {
+  type = string
+}

@@ -1,0 +1,32 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/info-widgets/
+
+- glances:
+    url: https://monitor.nxusdevhome.duckdns.org
+    version: 4
+    cpu: true
+    mem: true
+    cputemp: true
+    cpuSensorLabel: Package id
+    unit: imperial
+    uptime: true
+    disk: /
+    diskUnits: bytes
+    expanded: true
+    label: homelab
+
+- datetime:
+    text_size: xl
+    format:
+      timeStyle: short
+
+- openmeteo:
+    label: Caracas
+    latitude: 10.4806
+    longitude: -66.9036
+    timezone: America/Caracas
+    units: metric
+    cache: 5
+    format:
+      maximumFractionDigits: 1

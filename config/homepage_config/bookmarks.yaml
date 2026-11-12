@@ -1,0 +1,19 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmars
+
+- Repositories:
+    - Codeberg:
+        - icon: si-codeberg-#2185d0
+          href: https://codeberg.org/Nxus
+    - Github:
+        - icon: si-github-#181717
+          href: https://github.com/DumbNoxx
+
+- Socials:
+    - Website:
+        - icon: https://nxbin.xyz/favicon.ico
+          href: https://nxbin.xyz
+    - X:
+        - icon: si-x-#000000
+          href: https://x.com/NxusDev

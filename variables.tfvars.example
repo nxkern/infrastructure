@@ -1,3 +1,4 @@
 host_homelab=""
 url_image=""
 nuxt_api_key_worker=""
+homepage_allowed_host=""
