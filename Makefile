@@ -1,4 +1,7 @@
-.PHONY: plan apply fmt validate 
+.PHONY: init plan apply fmt validate 
+
+init:
+	terraform init -reconfigure -backend-config=backend.hcl
 
 plan:
 	terraform plan $(PARALLEL) -var-file="variables.tfvars" -out plan.out
