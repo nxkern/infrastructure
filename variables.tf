@@ -39,6 +39,6 @@ variable "oauthlib_relax_token_scope" {
 }
 
 variable "account_id" {
-  type = string
+  type    = string
   default = "<YOUR_ACCOUNT_ID>"
 }

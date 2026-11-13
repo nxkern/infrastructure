@@ -1,4 +1,4 @@
-.PHONY: plan apply 
+.PHONY: plan apply fmt validate 
 
 plan:
 	terraform plan $(PARALLEL) -var-file="variables.tfvars" -out plan.out
@@ -6,5 +6,9 @@ plan:
 apply:
 	terraform apply $(PARALLEL) "plan.out"
 
+fmt: 
+	terraform fmt --recursive
 
+validate:
+	terraform validate
 

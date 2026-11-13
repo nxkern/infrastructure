@@ -1,21 +1,21 @@
 
 resource "docker_image" "website" {
-  name = data.docker_registry_image.website.name 
+  name          = data.docker_registry_image.website.name
   pull_triggers = [data.docker_registry_image.website.sha256_digest]
 }
 
 
 resource "azurecaf_name" "random_name_website" {
-  name = "website"
+  name          = "website"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes  = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_container" "website" {
-  name = azurecaf_name.random_name_website.result
+  name  = azurecaf_name.random_name_website.result
   image = docker_image.website.image_id
 
   ports {
@@ -32,12 +32,12 @@ resource "docker_container" "website" {
 }
 
 resource "azurecaf_name" "random_name_homepage" {
-  name = "homepage"
+  name          = "homepage"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_image" "homepage" {
@@ -45,7 +45,7 @@ resource "docker_image" "homepage" {
 }
 
 resource "docker_container" "homepage" {
-  name = azurecaf_name.random_name_homepage.result
+  name  = azurecaf_name.random_name_homepage.result
   image = docker_image.homepage.image_id
 
   ports {
@@ -61,33 +61,33 @@ resource "docker_container" "homepage" {
   ]
 
   volumes {
-    host_path = "/run/podman/podman.sock"
-    container_path  = "/var/run/docker.sock"
-    read_only = true
+    host_path      = "/run/podman/podman.sock"
+    container_path = "/var/run/docker.sock"
+    read_only      = true
   }
   upload {
-    file = "/app/config/services.yaml"
+    file    = "/app/config/services.yaml"
     content = file("${path.module}/config/homepage_config/services.yaml")
   }
   upload {
-    file = "/app/config/bookmarks.yaml"
+    file    = "/app/config/bookmarks.yaml"
     content = file("${path.module}/config/homepage_config/bookmarks.yaml")
   }
 
   upload {
-    file = "/app/config/widgets.yaml"
+    file    = "/app/config/widgets.yaml"
     content = file("${path.module}/config/homepage_config/widgets.yaml")
   }
   restart = "always"
 }
 
 resource "azurecaf_name" "random_name_vikunja" {
-  name = "vikunja"
+  name          = "vikunja"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_image" "vikunja" {
@@ -103,7 +103,7 @@ resource "docker_volume" "vikunja_files" {
 }
 
 resource "docker_container" "vikunja" {
-  name = azurecaf_name.random_name_vikunja.result
+  name  = azurecaf_name.random_name_vikunja.result
   image = docker_image.vikunja.image_id
 
   ports {
@@ -119,24 +119,24 @@ resource "docker_container" "vikunja" {
   ]
 
   volumes {
-    volume_name = docker_volume.vikunja_db.name
+    volume_name    = docker_volume.vikunja_db.name
     container_path = "/db"
   }
 
   volumes {
-    volume_name = docker_volume.vikunja_files.name
+    volume_name    = docker_volume.vikunja_files.name
     container_path = "/app/vikunja/files"
   }
   restart = "always"
 }
 
 resource "azurecaf_name" "random_name_memos" {
-  name = "memos"
+  name          = "memos"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_image" "memos" {
@@ -148,7 +148,7 @@ resource "docker_volume" "memos_data" {
 }
 
 resource "docker_container" "memos" {
-  name = azurecaf_name.random_name_memos.result
+  name  = azurecaf_name.random_name_memos.result
   image = docker_image.memos.image_id
 
   ports {
@@ -159,19 +159,19 @@ resource "docker_container" "memos" {
     name = "homelab_net"
   }
   volumes {
-    volume_name = docker_volume.memos_data.name
+    volume_name    = docker_volume.memos_data.name
     container_path = "/var/opt/memos"
   }
   restart = "always"
 }
 
 resource "azurecaf_name" "random_name_adguardhome" {
-  name = "adguardhome"
+  name          = "adguardhome"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_image" "adguardhome" {
@@ -187,7 +187,7 @@ resource "docker_volume" "adguardhome_conf" {
 }
 
 resource "docker_container" "adguardhome" {
-  name = azurecaf_name.random_name_adguardhome.result
+  name  = azurecaf_name.random_name_adguardhome.result
   image = docker_image.adguardhome.image_id
 
   ports {
@@ -212,28 +212,28 @@ resource "docker_container" "adguardhome" {
   }
 
   networks_advanced {
-    name = "homelab_net"
+    name    = "homelab_net"
     aliases = ["adguardhome"]
   }
 
   volumes {
-    volume_name = docker_volume.adguardhome_work.name
+    volume_name    = docker_volume.adguardhome_work.name
     container_path = "/opt/adguardhome/work"
   }
   volumes {
-    volume_name = docker_volume.adguardhome_conf.name
+    volume_name    = docker_volume.adguardhome_conf.name
     container_path = "/opt/adguardhome/conf"
   }
   restart = "always"
 }
 
 resource "azurecaf_name" "random_name_library" {
-  name = "library"
+  name          = "library"
   resource_type = "azurerm_resource_group"
-  prefixes = ["prod"]
-  suffixes = ["001"]
+  prefixes      = ["prod"]
+  suffixes      = ["001"]
   random_length = 4
-  clean_input = true
+  clean_input   = true
 }
 
 resource "docker_image" "library" {
@@ -249,20 +249,20 @@ resource "docker_volume" "calibre-book" {
 }
 
 resource "docker_container" "library" {
-  name = azurecaf_name.random_name_library.result
+  name  = azurecaf_name.random_name_library.result
   image = docker_image.library.image_id
-  
+
   ports {
     internal = 8083
     external = 8083
   }
 
   volumes {
-    volume_name = docker_volume.calibre-book.name
+    volume_name    = docker_volume.calibre-book.name
     container_path = "/books"
   }
   volumes {
-    volume_name = docker_volume.calibre-config.name
+    volume_name    = docker_volume.calibre-config.name
     container_path = "/config"
   }
 
