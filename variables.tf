@@ -37,3 +37,8 @@ variable "docker_mods_library" {
 variable "oauthlib_relax_token_scope" {
   type = number
 }
+
+variable "account_id" {
+  type = string
+  default = "<YOUR_ACCOUNT_ID>"
+}

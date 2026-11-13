@@ -8,6 +8,13 @@ provider "registry.terraform.io/aztfmod/azurecaf" {
   ]
 }
 
+provider "registry.terraform.io/cloudflare/cloudflare" {
+  version = "5.29.0"
+  hashes = [
+    "h1:0RXHRyWFyq97Fu66ZUTiQBAqZalxfquPVp6+QaWoxAI=",
+  ]
+}
+
 provider "registry.terraform.io/kreuzwerker/docker" {
   version = "4.6.0"
   hashes = [

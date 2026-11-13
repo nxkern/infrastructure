@@ -6,6 +6,9 @@ terraform {
     azurecaf = {
       source = "aztfmod/azurecaf"
     }
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
   }
 }
 
@@ -19,3 +22,5 @@ data "docker_registry_image" "website" {
   name = var.url_image
 }
 
+
+provider "cloudflare" {}

@@ -27,6 +27,7 @@
           (pkgs.terraform.withPlugins (p: [
             p.kreuzwerker_docker
             tf-providers.aztfmod.azurecaf
+            tf-providers.cloudflare.cloudflare
           ]))
         ];
       in

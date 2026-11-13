@@ -8,6 +8,8 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+backend.hcl
+!backend.hcl.example
 
 # Crash log files
 crash.log
