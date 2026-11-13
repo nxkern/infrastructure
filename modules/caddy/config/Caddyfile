@@ -1,0 +1,23 @@
+nxbin.xyz:80 {
+  reverse_proxy website:3000 
+}
+
+home.nxbin.xyz:80 {
+    reverse_proxy homepage:3000
+}
+
+adguard.nxbin.xyz:80 {
+    reverse_proxy adguardhome:80
+}
+
+library.nxbin.xyz:80 {
+    reverse_proxy library:8083
+}
+
+memos.nxbin.xyz:80 {
+    reverse_proxy memos:5230
+}
+
+todo.nxbin.xyz:80 {
+    reverse_proxy vikunja:3456
+}

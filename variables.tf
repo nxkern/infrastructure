@@ -42,3 +42,9 @@ variable "account_id" {
   type    = string
   default = "<YOUR_ACCOUNT_ID>"
 }
+
+variable "token_cloudflared" {
+  description = "token cloudflared"
+  type        = string
+  sensitive   = true
+}

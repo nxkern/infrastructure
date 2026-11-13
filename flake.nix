@@ -24,6 +24,7 @@
         tf-providers = nixpkgs-terraform-providers-bin.legacyPackages.${system}.providers;
 
         packages = [
+          pkgs.docker-buildx
           (pkgs.terraform.withPlugins (p: [
             p.kreuzwerker_docker
             tf-providers.aztfmod.azurecaf
@@ -32,7 +33,9 @@
         ];
       in
       {
-        devShells.default = pkgs.mkShell { inherit packages; };
+        devShells.default = pkgs.mkShell {
+          inherit packages;
+        };
 
       }
     );
