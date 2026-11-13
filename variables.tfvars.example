@@ -2,3 +2,10 @@ host_homelab=""
 url_image=""
 nuxt_api_key_worker=""
 homepage_allowed_host=""
+vikunja_service_publicurl=""
+puid_library=
+pgid_library=
+tz_library=""
+docker_mods_library=""
+oauthlib_relax_token_scope=
+

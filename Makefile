@@ -1,8 +1,10 @@
-.PHONY: plan apply
+.PHONY: plan apply 
 
 plan:
-	terraform plan -var-file="variables.tfvars" -out plan.out
+	terraform plan $(PARALLEL) -var-file="variables.tfvars" -out plan.out
 
 apply:
-	terraform apply "plan.out"
+	terraform apply $(PARALLEL) "plan.out"
+
+
 
