@@ -48,3 +48,9 @@ variable "domain_backend_yourspotify" {
   description = "domain backend yourspotify"
   type        = string
 }
+variable "kopia_ip" {
+  description = "ip kopia"
+  type        = string
+}
+
+

@@ -14,9 +14,12 @@ module "website" {
 }
 
 module "homepage" {
-  source                = "./modules/homepage"
-  network_container     = docker_network.homelab_net.name
-  homepage_allowed_host = var.homepage_allowed_host
+  source                       = "./modules/homepage"
+  network_container            = docker_network.homelab_net.name
+  homepage_allowed_host        = var.homepage_allowed_host
+  homepage_var_yourspotify_key = var.homepage_api_yourspotify
+  homepage_var_vikunja_key     = var.homepage_api_vikunja
+
 }
 
 module "vikunja" {
@@ -58,6 +61,7 @@ module "caddy" {
   yourspotify_server_ip      = module.yourspotify.ip_address_server_yourspotify
   yourspotify_mongo_ip       = module.yourspotify.ip_address_mongo_yourspotify
   domain_backend_yourspotify = var.domain_backend_yourspotify
+  kopia_ip                   = module.kopia.ip_address
 }
 
 module "cloudflared" {
@@ -72,4 +76,13 @@ module "yourspotify" {
   client_endpoint   = var.client_endpoint_yourspotify
   spotify_public    = var.spotify_public
   spotify_secret    = var.spotify_secret
+}
+
+module "kopia" {
+  source            = "./modules/kopia"
+  network_container = docker_network.homelab_net.name
+  path_home         = var.path_home_backups_kopia
+  password          = var.password_respository_kopia
+  user              = var.user_repository_kopia
+  rclone_token      = var.kopia_rclone_token
 }

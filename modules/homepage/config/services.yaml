@@ -5,19 +5,30 @@
 - Home:
     - Memos:
         icon: memos.png
-        ping: https://memos.nxbin.xyz
         href: https://memos.nxbin.xyz
+        ping: memos.nxbin.xyz
         description: My social X be like
     - Todo:
         icon: si-vikunja-#196AFF
-        ping: https://todo.nxbin.xyz
         href: https://todo.nxbin.xyz
+        ping: todo.nxbin.xyz
         description: My todo list page
     - Library:
         icon: calibre-web.png
-        ping: https://library.nxbin.xyz
         href: https://library.nxbin.xyz
+        ping: library.nxbin.xyz
         description: My library
+
+- Productive:
+    - Vikunja:
+        icon: si-vikunja
+        widget:
+          type: vikunja
+          url: http://vikunja:3456
+          key: "{{HOMEPAGE_VAR_VIKUNJA_KEY}}"
+          enableTaskList: true 
+          version: 2 
+
 - Others:
     - Calendar:
         icon: mdi-calendar 
@@ -28,9 +39,11 @@
           maxEvents: 10 
           showTime: true 
           timezone: America/Caracas 
+    - Yourspotify:
+        icon: mdi-spotify
+        widget:
+          type: yourspotify
+          url: http://yourspotify_server:8080 
+          key: "{{HOMEPAGE_VAR_YOURSPOTIFY_KEY}}"
+          interval: month 
 
-# - widget:
-#   type: yourspotify
-#   url: http://your-spotify-server.host.or.ip # if using lsio image, add /api/
-#   key: apikeyapikeyapikeyapikeyapikey
-#   interval: month # optional, defaults to week

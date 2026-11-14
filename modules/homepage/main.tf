@@ -15,6 +15,8 @@ resource "docker_image" "homepage" {
 resource "docker_container" "homepage" {
   name  = azurecaf_name.random_name_homepage.result
   image = docker_image.homepage.image_id
+  dns   = ["1.1.1.1", "8.8.8.8"]
+
 
   ports {
     internal = 3000
@@ -26,7 +28,9 @@ resource "docker_container" "homepage" {
   }
 
   env = [
-    "HOMEPAGE_ALLOWED_HOSTS=${var.homepage_allowed_host}"
+    "HOMEPAGE_ALLOWED_HOSTS=${var.homepage_allowed_host}",
+    "HOMEPAGE_VAR_YOURSPOTIFY_KEY=${var.homepage_var_yourspotify_key}",
+    "HOMEPAGE_VAR_VIKUNJA_KEY=${var.homepage_var_vikunja_key}",
   ]
 
   volumes {

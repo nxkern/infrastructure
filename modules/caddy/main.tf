@@ -31,7 +31,6 @@ resource "docker_volume" "caddy_config" {
 resource "docker_container" "caddy" {
   name  = azurecaf_name.random_name_caddy.result
   image = docker_image.caddy.image_id
-
   capabilities {
     add = ["NET_ADMIN"]
   }
@@ -87,6 +86,11 @@ resource "docker_container" "caddy" {
   host {
     host = "mongo_yourspotify"
     ip   = var.yourspotify_mongo_ip
+  }
+
+  host {
+    host = "kopia"
+    ip   = var.kopia_ip
   }
 
   networks_advanced {

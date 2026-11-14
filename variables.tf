@@ -71,3 +71,31 @@ variable "domain_backend_yourspotify" {
   type      = string
   sensitive = true
 }
+
+variable "homepage_api_yourspotify" {
+  type      = string
+  sensitive = true
+}
+
+variable "homepage_api_vikunja" {
+  type      = string
+  sensitive = true
+}
+
+variable "path_home_backups_kopia" {
+  type = string
+}
+
+variable "password_respository_kopia" {
+  type      = string
+  sensitive = true
+}
+
+variable "user_repository_kopia" {
+  type = string
+}
+
+variable "kopia_rclone_token" {
+  type      = string
+  sensitive = true
+}

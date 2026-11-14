@@ -15,13 +15,3 @@
     text_size: xl
     format:
       timeStyle: short
-
-- openmeteo:
-    label: Caracas
-    latitude: 10.4806
-    longitude: -66.9036
-    timezone: America/Caracas
-    units: metric
-    cache: 5
-    format:
-      maximumFractionDigits: 1

@@ -29,3 +29,7 @@ todo.nxbin.xyz:80 {
 yourspotify.nxbin.xyz:80 {
     reverse_proxy yourspotify_client:3000
 }
+
+kopia.nxbin.xyz:80 {
+    reverse_proxy kopia:51515
+}
