@@ -46,17 +46,18 @@ module "library" {
 }
 
 module "caddy" {
-  source                = "./modules/caddy"
-  network_container     = docker_network.homelab_net.name
-  website_ip            = module.website.ip_address
-  homepage_ip           = module.homepage.ip_address
-  adguardhome_ip        = module.adguardhome.ip_address
-  library_ip            = module.library.ip_address
-  memos_ip              = module.memos.ip_address
-  vikunja_ip            = module.vikunja.ip_address
-  yourspotify_client_ip = module.yourspotify.ip_address_client_yourspotify
-  yourspotify_server_ip = module.yourspotify.ip_address_server_yourspotify
-  yourspotify_mongo_ip  = module.yourspotify.ip_address_mongo_yourspotify
+  source                     = "./modules/caddy"
+  network_container          = docker_network.homelab_net.name
+  website_ip                 = module.website.ip_address
+  homepage_ip                = module.homepage.ip_address
+  adguardhome_ip             = module.adguardhome.ip_address
+  library_ip                 = module.library.ip_address
+  memos_ip                   = module.memos.ip_address
+  vikunja_ip                 = module.vikunja.ip_address
+  yourspotify_client_ip      = module.yourspotify.ip_address_client_yourspotify
+  yourspotify_server_ip      = module.yourspotify.ip_address_server_yourspotify
+  yourspotify_mongo_ip       = module.yourspotify.ip_address_mongo_yourspotify
+  domain_backend_yourspotify = var.domain_backend_yourspotify
 }
 
 module "cloudflared" {

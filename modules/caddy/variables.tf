@@ -43,3 +43,8 @@ variable "yourspotify_mongo_ip" {
   description = "ip yourspotify mongo"
   type        = string
 }
+
+variable "domain_backend_yourspotify" {
+  description = "domain backend yourspotify"
+  type        = string
+}

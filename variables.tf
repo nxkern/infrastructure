@@ -66,3 +66,8 @@ variable "spotify_secret" {
   type      = string
   sensitive = true
 }
+
+variable "domain_backend_yourspotify" {
+  type      = string
+  sensitive = true
+}

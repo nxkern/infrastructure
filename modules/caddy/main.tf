@@ -84,6 +84,11 @@ resource "docker_container" "caddy" {
     ip   = var.yourspotify_server_ip
   }
 
+  host {
+    host = "mongo_yourspotify"
+    ip   = var.yourspotify_mongo_ip
+  }
+
   networks_advanced {
     name    = var.network_container
     aliases = ["caddy"]
@@ -97,6 +102,9 @@ resource "docker_container" "caddy" {
     volume_name    = docker_volume.caddy_config.name
     container_path = "/config"
   }
+  env = [
+    "DOMAIN_BACKEND_YOURSPOTIFY=${var.domain_backend_yourspotify}"
+  ]
 
   upload {
     file    = "/etc/caddy/Caddyfile"
