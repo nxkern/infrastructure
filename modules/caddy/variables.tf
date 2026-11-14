@@ -29,3 +29,17 @@ variable "vikunja_ip" {
   type        = string
 }
 
+variable "yourspotify_client_ip" {
+  description = "ip yourspotify client"
+  type        = string
+}
+
+variable "yourspotify_server_ip" {
+  description = "ip yourspotify server"
+  type        = string
+}
+
+variable "yourspotify_mongo_ip" {
+  description = "ip yourspotify mongo"
+  type        = string
+}

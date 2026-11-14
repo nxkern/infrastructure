@@ -2,19 +2,14 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/info-widgets/
 
-- glances:
-    url: https://monitor.nxusdevhome.duckdns.org
-    version: 4
+
+- logo:
+    icon: https://nxbin.xyz/favicon.ico # optional
+
+- resources:
+    label: System
     cpu: true
-    mem: true
-    cputemp: true
-    cpuSensorLabel: Package id
-    unit: imperial
-    uptime: true
-    disk: /
-    diskUnits: bytes
-    expanded: true
-    label: homelab
+    memory: true
 
 - datetime:
     text_size: xl

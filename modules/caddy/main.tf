@@ -74,6 +74,15 @@ resource "docker_container" "caddy" {
     host = "vikunja"
     ip   = var.vikunja_ip
   }
+  host {
+    host = "yourspotify_client"
+    ip   = var.yourspotify_client_ip
+  }
+
+  host {
+    host = "yourspotify_server"
+    ip   = var.yourspotify_server_ip
+  }
 
   networks_advanced {
     name    = var.network_container
@@ -93,6 +102,7 @@ resource "docker_container" "caddy" {
     file    = "/etc/caddy/Caddyfile"
     content = file("${path.module}/config/Caddyfile")
   }
+  restart = "always"
 }
 
 

@@ -7,14 +7,24 @@
         icon: memos.png
         href: https://memos.nxbin.xyz
         description: My social X be like
-        ping: memos.nxbin.xyz
     - Todo:
         icon: si-vikunja-#196AFF
         href: https://todo.nxbin.xyz
         description: My todo list page
-        ping: todo.nxbin.xyz
     - Library:
         icon: calibre-web.png
         href: https://library.nxbin.xyz
         description: My library
-        ping: library.nxbin.xyz
+widget:
+  type: calendar
+  firstDayInWeek: sunday 
+  view: monthly 
+  maxEvents: 10 
+  showTime: true 
+  timezone: America/Caracas 
+
+widget:
+  type: yourspotify
+  url: http://your-spotify-server.host.or.ip # if using lsio image, add /api/
+  key: apikeyapikeyapikeyapikeyapikey
+  interval: month # optional, defaults to week

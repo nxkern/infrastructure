@@ -33,21 +33,25 @@ resource "docker_container" "adguardhome" {
   image = docker_image.adguardhome.image_id
 
   ports {
+    ip       = "192.168.0.106"
     internal = 53
     external = 53
     protocol = "tcp"
   }
   ports {
+    ip       = "192.168.0.106"
     internal = 53
     external = 53
     protocol = "udp"
   }
   ports {
+    ip       = "192.168.0.106"
     internal = 3000
     external = 3000
     protocol = "tcp"
   }
   ports {
+    ip       = "192.168.0.106"
     internal = 80
     external = 8080
     protocol = "tcp"

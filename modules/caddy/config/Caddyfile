@@ -21,3 +21,11 @@ memos.nxbin.xyz:80 {
 todo.nxbin.xyz:80 {
     reverse_proxy vikunja:3456
 }
+
+yourspotify-backend.nxbin.xyz:80 {
+    reverse_proxy yourspotify_server:8080
+}
+
+yourspotify.nxbin.xyz:80 {
+    reverse_proxy yourspotify_client:3000
+}

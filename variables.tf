@@ -48,3 +48,21 @@ variable "token_cloudflared" {
   type        = string
   sensitive   = true
 }
+
+variable "api_endpoint_yourspotify" {
+  type = string
+}
+
+variable "client_endpoint_yourspotify" {
+  type = string
+}
+
+variable "spotify_public" {
+  type      = string
+  sensitive = true
+}
+
+variable "spotify_secret" {
+  type      = string
+  sensitive = true
+}
