@@ -22,7 +22,7 @@ todo.nxbin.xyz:80 {
     reverse_proxy vikunja:3456
 }
 
-yourspotify-backend.nxbin.xyz:80 {
+{$DOMAIN_BACKEND_YOURSPOTIFY:80} {
     reverse_proxy yourspotify_server:8080
 }
 
