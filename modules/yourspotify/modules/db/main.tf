@@ -41,6 +41,7 @@ resource "null_resource" "deploy_mongo_backup_script" {
     path_home      = var.path_home
     shebang        = "sh"
     cron_schedule  = "30 7,19 * * *"
+    xdg_fix        = "1000"
   }
   connection {
     type  = "ssh"
@@ -60,17 +61,21 @@ resource "null_resource" "deploy_mongo_backup_script" {
     content     = <<-EOF
       #!/bin/sh
       set -e
+      export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      export XDG_RUNTIME_DIR=/run/user/1000
+      echo "--- Execute Backup: $(date)"
       podman exec "${docker_container.mongo_yourspotify.name}" mongodump --archive=/tmp/mongo.archive --gzip
       podman cp "${docker_container.mongo_yourspotify.name}":/tmp/mongo.archive ${var.path_home}/backups/mongo/mongo.archive.tmp
       podman exec "${docker_container.mongo_yourspotify.name}" rm -f /tmp/mongo.archive
       mv -f ${var.path_home}/backups/mongo/mongo.archive.tmp ${var.path_home}/backups/mongo/mongo.archive
+      echo "--- Backup complete: $(date)"
     EOF
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x ${var.path_home}/scripts/backups_mongo.sh",
-      "(crontab -l 2>/dev/null | grep -v '${var.path_home}/scripts/backups_mongo.sh'; echo '${self.triggers.cron_schedule} ${var.path_home}/scripts/backups_mongo.sh') | crontab -"
+      "(crontab -l 2>/dev/null | grep -v '${var.path_home}/scripts/backups_mongo.sh'; echo '${self.triggers.cron_schedule} ${var.path_home}/scripts/backups_mongo.sh >> ${var.path_home}/scripts/backups_mongo.log 2>&1') | crontab -"
     ]
   }
 }
