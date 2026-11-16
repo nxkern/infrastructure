@@ -26,7 +26,7 @@ todo.nxbin.xyz:80 {
     reverse_proxy yourspotify_server:8080
 }
 
-yourspotify.nxbin.xyz:80 {
+music.nxbin.xyz:80 {
     reverse_proxy yourspotify_client:3000
 }
 

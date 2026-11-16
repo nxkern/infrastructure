@@ -32,7 +32,8 @@ resource "docker_container" "yourspotify_server" {
     "CLIENT_ENDPOINT=${var.client_endpoint}",
     "SPOTIFY_PUBLIC=${var.spotify_public}",
     "SPOTIFY_SECRET=${var.spotify_secret}",
-    "MONGO_ENDPOINT=mongodb://${var.mongo_ip}:27017/your_spotify"
+    "MONGO_ENDPOINT=mongodb://${var.mongo_ip}:27017/your_spotify",
+    "NODE_OPTIONS=--dns-result-order=ipv4first --no-network-family-autoselection",
   ]
 
   depends_on = [var.mongo_module]
