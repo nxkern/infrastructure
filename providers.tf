@@ -9,6 +9,10 @@ terraform {
     cloudflare = {
       source = "cloudflare/cloudflare"
     }
+    null = {
+      source = "hashicorp/null"
+      # version = "~> 3.2"
+    }
   }
 }
 

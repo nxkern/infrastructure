@@ -76,6 +76,8 @@ module "yourspotify" {
   client_endpoint   = var.client_endpoint_yourspotify
   spotify_public    = var.spotify_public
   spotify_secret    = var.spotify_secret
+  host_homelab      = var.ip_host
+  path_home         = var.path_home
 }
 
 module "kopia" {

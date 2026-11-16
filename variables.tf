@@ -99,3 +99,11 @@ variable "kopia_rclone_token" {
   type      = string
   sensitive = true
 }
+
+variable "ip_host" {
+  type = string
+}
+
+variable "path_home" {
+  type = string
+}

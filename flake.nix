@@ -29,6 +29,7 @@
             p.kreuzwerker_docker
             tf-providers.aztfmod.azurecaf
             tf-providers.cloudflare.cloudflare
+            p.hashicorp_null
           ]))
         ];
       in

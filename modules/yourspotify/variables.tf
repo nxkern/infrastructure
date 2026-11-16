@@ -20,4 +20,15 @@ variable "spotify_public" {
 
 variable "spotify_secret" {
   description = "Spotify token secret"
+  type        = string
+}
+
+variable "host_homelab" {
+  description = "host"
+  type        = string
+}
+
+variable "path_home" {
+  description = "path home"
+  type        = string
 }

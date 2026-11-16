@@ -34,3 +34,43 @@ resource "docker_container" "mongo_yourspotify" {
   }
   restart = "always"
 }
+
+resource "null_resource" "deploy_mongo_backup_script" {
+  triggers = {
+    container_name = docker_container.mongo_yourspotify.name
+    path_home      = var.path_home
+    shebang        = "sh"
+    cron_schedule  = "30 7,19 * * *"
+  }
+  connection {
+    type  = "ssh"
+    host  = var.host_homelab
+    user  = "nxus"
+    agent = true
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p ${var.path_home}/scripts ${var.path_home}/backups/mongo"
+    ]
+  }
+
+  provisioner "file" {
+    destination = "${var.path_home}/scripts/backups_mongo.sh"
+    content     = <<-EOF
+      #!/bin/sh
+      set -e
+      podman exec "${docker_container.mongo_yourspotify.name}" mongodump --archive=/tmp/mongo.archive --gzip
+      podman cp "${docker_container.mongo_yourspotify.name}":/tmp/mongo.archive ${var.path_home}/backups/mongo/mongo.archive.tmp
+      podman exec "${docker_container.mongo_yourspotify.name}" rm -f /tmp/mongo.archive
+      mv -f ${var.path_home}/backups/mongo/mongo.archive.tmp ${var.path_home}/backups/mongo/mongo.archive
+    EOF
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x ${var.path_home}/scripts/backups_mongo.sh",
+      "(crontab -l 2>/dev/null | grep -v '${var.path_home}/scripts/backups_mongo.sh'; echo '${self.triggers.cron_schedule} ${var.path_home}/scripts/backups_mongo.sh') | crontab -"
+    ]
+  }
+}

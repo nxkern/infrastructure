@@ -6,6 +6,11 @@ terraform {
     azurecaf = {
       source = "aztfmod/azurecaf"
     }
+    null = {
+      source = "hashicorp/null"
+      # version = "~> 3.2"
+    }
+
   }
 }
 

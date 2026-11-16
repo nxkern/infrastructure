@@ -7,6 +7,8 @@ module "yourspotify_client" {
 module "mongo_yourspotify" {
   source            = "./modules/db"
   network_container = var.network_container
+  host_homelab      = var.host_homelab
+  path_home         = var.path_home
 }
 
 

@@ -15,6 +15,13 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
   ]
 }
 
+provider "registry.terraform.io/hashicorp/null" {
+  version = "3.3.2"
+  hashes = [
+    "h1:EuOjQBzua0asIqQP7/2vYDrJITEOo5sZVjLJhDmKaj0=",
+  ]
+}
+
 provider "registry.terraform.io/kreuzwerker/docker" {
   version = "4.6.0"
   hashes = [
