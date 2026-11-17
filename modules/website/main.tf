@@ -7,8 +7,8 @@ resource "docker_image" "website" {
 resource "azurecaf_name" "random_name_website" {
   name          = "website"
   resource_type = "azurerm_resource_group"
-  prefixes      = ["prod"]
-  suffixes      = ["001"]
+  prefixes      = ["prod", "web"]
+  suffixes      = ["001", "site"]
   random_length = 4
   clean_input   = true
 }
@@ -21,12 +21,17 @@ resource "docker_container" "website" {
     internal = 3000
     external = 3010
   }
+  host {
+    host = var.worker_host
+    ip   = var.ip_worker
+  }
   networks_advanced {
     name    = var.network_container
     aliases = ["website"]
   }
   env = [
-    "NUXT_API_KEY_WORKER=${var.nuxt_api_key_worker}"
+    "NUXT_API_KEY_WORKER=${var.nuxt_api_key_worker}",
+
   ]
   restart = "always"
 }

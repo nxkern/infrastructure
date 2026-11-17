@@ -12,3 +12,13 @@ variable "url_image" {
   description = "url image docker"
   type        = string
 }
+
+variable "worker_host" {
+  description = "worker host"
+  type        = string
+}
+
+variable "ip_worker" {
+  description = "ip worker"
+  type        = string
+}

@@ -107,3 +107,20 @@ variable "ip_host" {
 variable "path_home" {
   type = string
 }
+
+variable "url_image_quickqr_api" {
+  type = string
+}
+variable "domain_quickqr_api" {
+  type = string
+}
+
+variable "worker_api" {
+  type      = string
+  sensitive = true
+}
+
+variable "worker_api_ip" {
+  type      = string
+  sensitive = true
+}

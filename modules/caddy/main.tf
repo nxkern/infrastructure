@@ -92,6 +92,10 @@ resource "docker_container" "caddy" {
     host = "kopia"
     ip   = var.kopia_ip
   }
+  host {
+    host = "quickqr_api"
+    ip   = var.quickqr_api_ip
+  }
 
   networks_advanced {
     name    = var.network_container
@@ -107,7 +111,8 @@ resource "docker_container" "caddy" {
     container_path = "/config"
   }
   env = [
-    "DOMAIN_BACKEND_YOURSPOTIFY=${var.domain_backend_yourspotify}"
+    "DOMAIN_BACKEND_YOURSPOTIFY=${var.domain_backend_yourspotify}",
+    "DOMAIN_API_QUICKQR=${var.domain_quickqr_api}"
   ]
 
   upload {

@@ -11,6 +11,8 @@ module "website" {
   nuxt_api_key_worker = var.nuxt_api_key_worker
   network_container   = docker_network.homelab_net.name
   url_image           = var.url_image
+  worker_host         = var.worker_api
+  ip_worker           = var.worker_api_ip
 }
 
 module "homepage" {
@@ -62,6 +64,8 @@ module "caddy" {
   yourspotify_mongo_ip       = module.yourspotify.ip_address_mongo_yourspotify
   domain_backend_yourspotify = var.domain_backend_yourspotify
   kopia_ip                   = module.kopia.ip_address
+  quickqr_api_ip             = module.quickqr-api.ip_address
+  domain_quickqr_api         = var.domain_quickqr_api
 }
 
 module "cloudflared" {
@@ -87,4 +91,11 @@ module "kopia" {
   password          = var.password_respository_kopia
   user              = var.user_repository_kopia
   rclone_token      = var.kopia_rclone_token
+}
+
+module "quickqr-api" {
+  source            = "./modules/quickqr-api"
+  network_container = docker_network.homelab_net.name
+  url_image         = var.url_image_quickqr_api
+
 }

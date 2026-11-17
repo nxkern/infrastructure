@@ -33,3 +33,7 @@ music.nxbin.xyz:80 {
 kopia.nxbin.xyz:80 {
     reverse_proxy kopia:51515
 }
+
+{$DOMAIN_API_QUICKQR}:80 {
+    reverse_proxy quickqr_api:8080
+}

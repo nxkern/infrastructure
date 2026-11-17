@@ -52,5 +52,13 @@ variable "kopia_ip" {
   description = "ip kopia"
   type        = string
 }
+variable "quickqr_api_ip" {
+  description = "ip quickqr api"
+  type        = string
+}
+variable "domain_quickqr_api" {
+  description = "domain quickqr api"
+  type        = string
+}
 
 
