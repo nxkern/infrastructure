@@ -1,7 +1,7 @@
 resource "docker_image" "website" {
-  name          = data.docker_registry_image.website.name
+  name          = "${data.docker_registry_image.website.name}@${data.docker_registry_image.website.sha256_digest}"
   pull_triggers = [data.docker_registry_image.website.sha256_digest]
-  keep_locally  = true
+  keep_locally  = false
 }
 
 resource "azurecaf_name" "random_name_website" {

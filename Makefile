@@ -1,4 +1,4 @@
-.PHONY: init plan apply fmt validate 
+.PHONY: init plan apply fmt validate destroy-one 
 
 init:
 	terraform init -reconfigure -backend-config=backend.hcl
@@ -15,3 +15,5 @@ fmt:
 validate:
 	terraform validate
 
+destroy-one:
+	terraform destroy -var-file="variables.tfvars" -target=$(RESOURCE)

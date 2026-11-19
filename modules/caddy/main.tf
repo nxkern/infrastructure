@@ -73,20 +73,20 @@ resource "docker_container" "caddy" {
     host = "vikunja"
     ip   = var.vikunja_ip
   }
-  host {
-    host = "yourspotify_client"
-    ip   = var.yourspotify_client_ip
-  }
-
-  host {
-    host = "yourspotify_server"
-    ip   = var.yourspotify_server_ip
-  }
-
-  host {
-    host = "mongo_yourspotify"
-    ip   = var.yourspotify_mongo_ip
-  }
+  # host {
+  #   host = "yourspotify_client"
+  #   ip   = var.yourspotify_client_ip
+  # }
+  #
+  # host {
+  #   host = "yourspotify_server"
+  #   ip   = var.yourspotify_server_ip
+  # }
+  #
+  # host {
+  #   host = "mongo_yourspotify"
+  #   ip   = var.yourspotify_mongo_ip
+  # }
 
   host {
     host = "kopia"

@@ -1,3 +1,9 @@
+{
+	servers {
+		trusted_proxies static private_ranges
+	}
+}
+
 nxbin.xyz:80 {
   reverse_proxy website:3000 
 }
@@ -22,13 +28,13 @@ todo.nxbin.xyz:80 {
     reverse_proxy vikunja:3456
 }
 
-{$DOMAIN_BACKEND_YOURSPOTIFY}:80 {
-    reverse_proxy yourspotify_server:8080
-}
+# {$DOMAIN_BACKEND_YOURSPOTIFY}:80 {
+#   reverse_proxy yourspotify_server:8080
+#}
 
-music.nxbin.xyz:80 {
-    reverse_proxy yourspotify_client:3000
-}
+#music.nxbin.xyz:80 {
+#    reverse_proxy yourspotify_client:3000
+#}
 
 kopia.nxbin.xyz:80 {
     reverse_proxy kopia:51515
