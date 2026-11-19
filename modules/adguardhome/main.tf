@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_adguardhome" {
 
 resource "docker_image" "adguardhome" {
   name         = "adguard/adguardhome:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_volume" "adguardhome_work" {

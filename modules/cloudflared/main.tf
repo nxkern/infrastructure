@@ -1,6 +1,6 @@
 resource "docker_image" "cloudflared" {
   name         = "docker.io/cloudflare/cloudflared:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "azurecaf_name" "random_name_cloudflared" {

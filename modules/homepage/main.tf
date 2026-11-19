@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_homepage" {
 
 resource "docker_image" "homepage" {
   name         = "ghcr.io/gethomepage/homepage:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_container" "homepage" {

@@ -1,6 +1,6 @@
 resource "docker_image" "caddy" {
   name         = "serfriz/caddy-duckdns:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "azurecaf_name" "random_name_caddy" {

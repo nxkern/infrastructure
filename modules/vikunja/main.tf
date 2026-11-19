@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_vikunja" {
 
 resource "docker_image" "vikunja" {
   name         = "vikunja/vikunja:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_volume" "vikunja_db" {

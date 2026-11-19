@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_library" {
 
 resource "docker_image" "library" {
   name         = "lscr.io/linuxserver/calibre-web:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_volume" "calibre-config" {

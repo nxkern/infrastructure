@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_memos" {
 
 resource "docker_image" "memos" {
   name         = "neosmemo/memos:stable"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_volume" "memos_data" {

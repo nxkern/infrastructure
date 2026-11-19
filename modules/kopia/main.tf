@@ -9,7 +9,7 @@ resource "azurecaf_name" "random_name_kopia" {
 
 resource "docker_image" "kopia" {
   name         = "kopia/kopia:latest"
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_volume" "kopia_config" {
