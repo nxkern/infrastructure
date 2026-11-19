@@ -31,6 +31,7 @@ resource "docker_volume" "caddy_config" {
 resource "docker_container" "caddy" {
   name  = azurecaf_name.random_name_caddy.result
   image = docker_image.caddy.image_id
+  network_mode = "bridge"
   capabilities {
     add = ["NET_ADMIN"]
   }

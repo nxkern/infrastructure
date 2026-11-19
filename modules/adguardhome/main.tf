@@ -31,7 +31,7 @@ resource "docker_volume" "adguardhome_conf" {
 resource "docker_container" "adguardhome" {
   name  = azurecaf_name.random_name_adguardhome.result
   image = docker_image.adguardhome.image_id
-
+  network_mode = "bridge"
   ports {
     ip       = "192.168.0.106"
     internal = 53
