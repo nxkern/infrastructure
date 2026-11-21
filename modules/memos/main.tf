@@ -36,5 +36,5 @@ resource "docker_container" "memos" {
     volume_name    = docker_volume.memos_data.name
     container_path = "/var/opt/memos"
   }
-  restart = "always"
+  restart = "unless-stopped"
 }

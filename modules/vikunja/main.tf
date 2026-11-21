@@ -54,5 +54,5 @@ resource "docker_container" "vikunja" {
     volume_name    = docker_volume.vikunja_files.name
     container_path = "/app/vikunja/files"
   }
-  restart = "always"
+  restart = "unless-stopped"
 }

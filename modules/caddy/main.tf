@@ -31,7 +31,6 @@ resource "docker_volume" "caddy_config" {
 resource "docker_container" "caddy" {
   name  = azurecaf_name.random_name_caddy.result
   image = docker_image.caddy.image_id
-  network_mode = "bridge"
   capabilities {
     add = ["NET_ADMIN"]
   }
@@ -50,53 +49,6 @@ resource "docker_container" "caddy" {
     external = 443
     protocol = "udp"
   }
-  host {
-    host = "website"
-    ip   = var.website_ip
-  }
-  host {
-    host = "homepage"
-    ip   = var.homepage_ip
-  }
-  host {
-    host = "adguardhome"
-    ip   = var.adguardhome_ip
-  }
-  host {
-    host = "library"
-    ip   = var.library_ip
-  }
-  host {
-    host = "memos"
-    ip   = var.memos_ip
-  }
-  host {
-    host = "vikunja"
-    ip   = var.vikunja_ip
-  }
-  # host {
-  #   host = "yourspotify_client"
-  #   ip   = var.yourspotify_client_ip
-  # }
-  #
-  # host {
-  #   host = "yourspotify_server"
-  #   ip   = var.yourspotify_server_ip
-  # }
-  #
-  # host {
-  #   host = "mongo_yourspotify"
-  #   ip   = var.yourspotify_mongo_ip
-  # }
-
-  host {
-    host = "kopia"
-    ip   = var.kopia_ip
-  }
-  host {
-    host = "quickqr_api"
-    ip   = var.quickqr_api_ip
-  }
 
   networks_advanced {
     name    = var.network_container
@@ -112,7 +64,6 @@ resource "docker_container" "caddy" {
     container_path = "/config"
   }
   env = [
-    "DOMAIN_BACKEND_YOURSPOTIFY=${var.domain_backend_yourspotify}",
     "DOMAIN_API_QUICKQR=${var.domain_quickqr_api}"
   ]
 
@@ -120,7 +71,7 @@ resource "docker_container" "caddy" {
     file    = "/etc/caddy/Caddyfile"
     content = file("${path.module}/config/Caddyfile")
   }
-  restart = "always"
+  restart = "unless-stopped"
 }
 
 

@@ -25,5 +25,5 @@ resource "docker_container" "cloudflared" {
     var.token_cloudflared
   ]
 
-  restart = "always"
+  restart = "unless-stopped"
 }

@@ -29,8 +29,8 @@ resource "docker_volume" "adguardhome_conf" {
 }
 
 resource "docker_container" "adguardhome" {
-  name  = azurecaf_name.random_name_adguardhome.result
-  image = docker_image.adguardhome.image_id
+  name         = azurecaf_name.random_name_adguardhome.result
+  image        = docker_image.adguardhome.image_id
   network_mode = "bridge"
   ports {
     ip       = "192.168.0.106"
@@ -70,5 +70,5 @@ resource "docker_container" "adguardhome" {
     volume_name    = docker_volume.adguardhome_conf.name
     container_path = "/opt/adguardhome/conf"
   }
-  restart = "always"
+  restart = "unless-stopped"
 }

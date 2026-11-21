@@ -21,6 +21,13 @@ module "homepage" {
   homepage_allowed_host        = var.homepage_allowed_host
   homepage_var_yourspotify_key = var.homepage_api_yourspotify
   homepage_var_vikunja_key     = var.homepage_api_vikunja
+  depends_on = [
+    module.vikunja,
+    module.memos,
+    module.adguardhome,
+    module.library,
+    module.kopia,
+  ]
 
 }
 
@@ -51,26 +58,27 @@ module "library" {
 }
 
 module "caddy" {
-  source            = "./modules/caddy"
-  network_container = docker_network.homelab_net.name
-  website_ip        = module.website.ip_address
-  homepage_ip       = module.homepage.ip_address
-  adguardhome_ip    = module.adguardhome.ip_address
-  library_ip        = module.library.ip_address
-  memos_ip          = module.memos.ip_address
-  vikunja_ip        = module.vikunja.ip_address
-  # yourspotify_client_ip      = module.yourspotify.ip_address_client_yourspotify
-  # yourspotify_server_ip      = module.yourspotify.ip_address_server_yourspotify
-  # yourspotify_mongo_ip       = module.yourspotify.ip_address_mongo_yourspotify
-  domain_backend_yourspotify = var.domain_backend_yourspotify
-  kopia_ip                   = module.kopia.ip_address
-  quickqr_api_ip             = module.quickqr-api.ip_address
-  domain_quickqr_api         = var.domain_quickqr_api
+  source             = "./modules/caddy"
+  network_container  = docker_network.homelab_net.name
+  domain_quickqr_api = var.domain_quickqr_api
+  depends_on = [
+    module.website,
+    module.adguardhome,
+    module.homepage,
+    module.kopia,
+    module.library,
+    module.memos,
+    module.quickqr-api,
+    module.vikunja
+  ]
 }
 
 module "cloudflared" {
   source            = "./modules/cloudflared"
   token_cloudflared = var.token_cloudflared
+  depends_on = [
+    module.caddy
+  ]
 }
 
 # module "yourspotify" {
