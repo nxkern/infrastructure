@@ -1,4 +1,5 @@
-resource "azurecaf_name" "random_name_kopia" { name          = "kopia"
+resource "azurecaf_name" "random_name_kopia" {
+  name          = "kopia"
   resource_type = "azurerm_resource_group"
   prefixes      = ["prod", "ko"]
   suffixes      = ["001", "pia"]
