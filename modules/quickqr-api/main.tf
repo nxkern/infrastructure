@@ -26,5 +26,5 @@ resource "docker_container" "quickqr-api" {
     name    = var.network_container
     aliases = ["quickqr_api"]
   }
-  restart = "always"
+  restart = "unless-stopped"
 }

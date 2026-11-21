@@ -33,5 +33,5 @@ resource "docker_container" "website" {
     "NUXT_API_KEY_WORKER=${var.nuxt_api_key_worker}",
 
   ]
-  restart = "always"
+  restart = "unless-stopped"
 }

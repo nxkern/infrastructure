@@ -51,6 +51,6 @@ resource "docker_container" "homepage" {
     file    = "/app/config/widgets.yaml"
     content = file("${path.module}/config//widgets.yaml")
   }
-  restart = "always"
+  restart = "unless-stopped"
 }
 
