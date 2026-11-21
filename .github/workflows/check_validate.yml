@@ -8,16 +8,19 @@ on:
 
 
 
-  jobs:
-    check:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v6
-        
-        - name: Setup Terraform
-          uses: hashicorp/setup-terraform@v4
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
 
-        - name: Validate
-          run: terraform validate
+      - name: Init
+        run: terraform init
+
+      - name: Validate
+        run: terraform validate
 
