@@ -58,7 +58,9 @@ result-*
 .direnv
 .envrc
 !.envrc.template
-
+.terraform.lock.hcl
 
 # nvim
 pulse_debug.log
+
+
