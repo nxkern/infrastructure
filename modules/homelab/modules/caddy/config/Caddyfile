@@ -4,10 +4,6 @@
 	}
 }
 
-nxbin.xyz:80 {
-  reverse_proxy website:3000 
-}
-
 home.nxbin.xyz:80 {
     reverse_proxy homepage:3000
 }

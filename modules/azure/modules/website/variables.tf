@@ -1,11 +1,7 @@
 variable "nuxt_api_key_worker" {
   description = "api key worker cf"
   type        = string
-}
-
-variable "network_container" {
-  description = "net container"
-  type        = string
+  sensitive   = true
 }
 
 variable "url_image" {
@@ -13,12 +9,12 @@ variable "url_image" {
   type        = string
 }
 
-variable "worker_host" {
-  description = "worker host"
+variable "container_app_environment_id" {
+  description = "id container app"
   type        = string
 }
 
-variable "ip_worker" {
-  description = "ip worker"
+variable "resource_group_name" {
+  description = "resource group name"
   type        = string
 }

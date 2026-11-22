@@ -17,7 +17,6 @@ resource "docker_volume" "caddy_data" {
   lifecycle {
     prevent_destroy = true
   }
-
 }
 
 resource "docker_volume" "caddy_config" {

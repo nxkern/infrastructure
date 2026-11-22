@@ -1,3 +1,4 @@
+# Homelab vars
 variable "host_homelab" {
   type = string
 }
@@ -124,3 +125,11 @@ variable "worker_api_ip" {
   type      = string
   sensitive = true
 }
+
+# Azure vars
+variable "cloudflare_api_token" {
+  description = "cloudflare api token"
+  type        = string
+  sensitive   = true
+}
+
