@@ -34,7 +34,7 @@ resource "docker_container" "homepage" {
   ]
 
   volumes {
-    host_path      = "/run/podman/podman.sock"
+    host_path      = "/tmp/storage-run-1000/podman/podman.sock"
     container_path = "/var/run/docker.sock"
     read_only      = true
   }

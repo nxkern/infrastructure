@@ -13,6 +13,10 @@ terraform {
       source = "hashicorp/null"
       # version = "~> 3.2"
     }
+    azurerm = {
+      source = "hashicorp/azurerm"
+      # version = "5.14.0"
+    }
   }
 }
 
@@ -21,4 +25,18 @@ provider "docker" {
   host = var.host_homelab
 }
 
-provider "cloudflare" {}
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
+
+provider "azurerm" {
+  features {}
+}
+
+
+data "cloudflare_zone" "nxbin" {
+  filter = {
+    name = "nxbin.xyz"
+  }
+}
+
