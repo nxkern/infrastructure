@@ -26,5 +26,9 @@ resource "docker_container" "quickqr-api" {
     name    = var.network_container
     aliases = ["quickqr_api"]
   }
+  env = [
+    "OTEL_EXPORTER_OTLP_ENDPOINT=${var.otlp_endpoint}",
+    "OTEL_SERVICE_NAME=${var.otel_service_name}",
+  ]
   restart = "unless-stopped"
 }

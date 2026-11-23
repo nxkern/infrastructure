@@ -20,7 +20,6 @@ module "homepage" {
     module.library,
     module.kopia,
   ]
-
 }
 
 module "vikunja" {
@@ -96,5 +95,13 @@ module "quickqr-api" {
   source            = "./modules/quickqr-api"
   network_container = docker_network.homelab_net.name
   url_image         = var.url_image_quickqr_api
+  otlp_endpoint     = var.otlp_endpoint_quickqr_api
+  otel_service_name = var.otel_service_name_quickqr_api
 }
 
+
+module "collector" {
+  source            = "./modules/collector_opentelemetry"
+  connection_string = var.connection_string_opentelemetry
+  network_container = docker_network.homelab_net.name
+}

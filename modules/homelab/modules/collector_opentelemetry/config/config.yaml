@@ -1,0 +1,26 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4317
+
+exporters:
+  azuremonitor:
+    connection_string: ${env:CONNECTION_STRING}
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [azuremonitor]
+    metrics:
+      receivers: [otlp]
+      exporters: [azuremonitor]
+    logs:
+      receivers: [otlp]
+      exporters: [azuremonitor]

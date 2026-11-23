@@ -125,3 +125,20 @@ variable "worker_api_ip" {
   type      = string
   sensitive = true
 }
+
+
+variable "connection_string_opentelemetry" {
+  description = "The connection string for the OpenTelemetry Collector to send data to the backend."
+  type        = string
+  sensitive   = true
+}
+
+variable "otlp_endpoint_quickqr_api" {
+  description = "OTLP endpoint for OpenTelemetry in quickqr-api"
+  type        = string
+}
+
+variable "otel_service_name_quickqr_api" {
+  description = "Service name for OpenTelemetry in quickqr-api"
+  type        = string
+}
