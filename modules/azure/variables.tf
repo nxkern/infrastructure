@@ -13,3 +13,9 @@ variable "cloudflare_zone_id" {
   type = string
 
 }
+
+#variable "pfx_password" {
+# description = "Password for the PFX certificate"
+# type        = string
+# sensitive   = true
+#}

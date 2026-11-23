@@ -35,7 +35,7 @@ resource "azurerm_container_app" "website" {
       memory = "0.5Gi"
 
       env {
-        name  = "NUXT_API_KEY_WORKER"
+        name  = "nuxt_api_key_worker"
         value = var.nuxt_api_key_worker
       }
       env {
